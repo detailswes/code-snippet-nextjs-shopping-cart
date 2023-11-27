@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { AppDispatch, RootState } from "../../redux/store";
+import Card from "./Card";
 
 // const products = [
 //   {
@@ -105,6 +106,10 @@ export default function Home() {
 
         <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
           {products &&
+            products.map((product: any) => {
+              return <Card product={product} key={product.id} />;
+            })}
+          {/* {products &&
             products?.map((product: any) => (
               <Link
                 key={product.id}
@@ -128,7 +133,7 @@ export default function Home() {
                   </p>
                 </a>
               </Link>
-            ))}
+            ))} */}
         </div>
       </div>
     </div>
