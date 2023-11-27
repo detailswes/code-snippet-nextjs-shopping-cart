@@ -4,9 +4,14 @@ import "./data-tables-css.css";
 import { useState, useEffect } from "react";
 import Loader from "../common/Loader";
 import Header from "@/common/Header";
+import { Provider } from "react-redux";
+import { store } from "@/redux/store";
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
@@ -24,12 +29,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               {/* <!-- ===== Content Area Start ===== --> */}
               <div className="p-0">
                 {/* <!-- ===== Header Start ===== --> */}
-                <Header/>
+                <Header />
                 {/* <!-- ===== Header End ===== --> */}
 
                 {/* <!-- ===== Main Content Start ===== --> */}
                 <main>
-                  <div className="mx-auto  p-4 md:p-6 2xl:p-10">{children}</div>
+                  <div className="mx-auto  p-4 md:p-6 2xl:p-10">
+                    <Provider store={store}>{children}</Provider>
+                  </div>
                 </main>
                 {/* <!-- ===== Main Content End ===== --> */}
               </div>
