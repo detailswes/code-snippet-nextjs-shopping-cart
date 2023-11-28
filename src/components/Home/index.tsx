@@ -1,3 +1,4 @@
+"use client";
 import { fetchProductList } from "@/redux/productSlice";
 import Link from "next/link";
 import { useEffect } from "react";
@@ -88,7 +89,7 @@ import Card from "./Card";
 //   },
 // ];
 
-export default function Home() {
+export default function Home(data: { data: Object[] }) {
   const dispatch = useDispatch<AppDispatch>();
 
   const { products, isLoading } = useSelector(
