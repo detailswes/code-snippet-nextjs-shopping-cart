@@ -7,6 +7,7 @@ import {
   addToCart,
   decreaseQuantity,
   increaseQuantity,
+  removeProductFromCart,
 } from "@/redux/cartSlice";
 
 const Card = ({ product }: any) => {
@@ -26,7 +27,9 @@ const Card = ({ product }: any) => {
   const handleDecreaseQuantity = (product: Object) => {
     dispatch(decreaseQuantity(product));
   };
-
+  const handleRemoveProductFromCart = (product: Object) => {
+    dispatch(removeProductFromCart(product));
+  };
   return (
     <>
       {/* <Link
@@ -64,6 +67,9 @@ const Card = ({ product }: any) => {
           <br />
           <button onClick={() => handleDecreaseQuantity(product)}>
             decrease
+          </button>
+          <button onClick={() => handleRemoveProductFromCart(product)}>
+            Remove
           </button>
         </div>
       </a>
