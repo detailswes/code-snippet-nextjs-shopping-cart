@@ -31,7 +31,7 @@ export default function Header() {
           <Link legacyBehavior passHref href="/">
           <a className="-m-1.5 p-1.5">
             <span className="sr-only">Your Company</span>
-            <img className="h-12 w-18" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSChHeGWUI6skOXdsRnXlosReyFOt3-YoRejA&usqp=CAU" alt="Logo" />
+            <img className="h-14 w-18" src="https://img.freepik.com/free-vector/flat-design-bookstore-logo-template_23-2149325325.jpg?w=826&t=st=1701090789~exp=1701091389~hmac=bb5cbecb581461c77bb6f6c98c2844f4f9647aaf26c0f55c198adf934371a201" alt="Logo" />
           </a>
           </Link>          
         </div>
