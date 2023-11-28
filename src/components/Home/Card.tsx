@@ -3,21 +3,28 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../redux/store";
-import { addToCart } from "@/redux/cartSlice";
+import {
+  addToCart,
+  decreaseQuantity,
+  increaseQuantity,
+} from "@/redux/cartSlice";
 
 const Card = ({ product }: any) => {
   const dispatch = useDispatch<AppDispatch>();
   const { cart } = useSelector((state: RootState) => state.cart);
+  console.log(cart, "cart++++++++++");
 
   //func to handle add cart items
   const handleAddToCart = async (cartItems: any) => {
-    dispatch(addToCart(cartItems));
+    dispatch(addToCart({ ...cartItems, addedToCart: true }));
   };
 
-  //FUNC TO disable button if cart item exists already in cart
-  const shouldDisableBtn = (itemExist: number): boolean => {
-    const isItemAlreadyExist = cart.some((item: any) => item.id === itemExist);
-    return isItemAlreadyExist;
+  const handleIncreaseQuantity = (product: Object) => {
+    dispatch(increaseQuantity(product));
+  };
+
+  const handleDecreaseQuantity = (product: Object) => {
+    dispatch(decreaseQuantity(product));
   };
 
   return (
@@ -43,17 +50,21 @@ const Card = ({ product }: any) => {
         <div>
           <button
             style={{
-              backgroundColor: shouldDisableBtn(product.id) ? "gray" : "black",
+              backgroundColor: "black",
               color: "white",
             }}
-            disabled={shouldDisableBtn(product.id)}
             onClick={() => handleAddToCart(product)}
           >
             Add to cart
           </button>
           <br />
-          <button>increase</button> <br />
-          <button>decrease</button>
+          <button onClick={() => handleIncreaseQuantity(product)}>
+            increase
+          </button>{" "}
+          <br />
+          <button onClick={() => handleDecreaseQuantity(product)}>
+            decrease
+          </button>
         </div>
       </a>
       {/* </Link> */}
