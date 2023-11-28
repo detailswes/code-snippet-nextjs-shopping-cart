@@ -1,7 +1,10 @@
+import useAxios from "@/helpers/useAxios";
 import Home from "../components/Home";
 
 export default async function Page() {
-  const response = await fetch("https://api.escuelajs.co/api/v1/products");
-  const data = await response.json();
-  return <Home data={data} />;
+  //for initial server side rendering
+  const limit = 8;
+  const { data } = await useAxios(`products?limit=${limit}`);
+
+  return <Home data={data} limit={limit} />;
 }
