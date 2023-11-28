@@ -81,12 +81,12 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
                                 <div className="ml-4 flex flex-1 flex-col">
                                   <div>
                                     <div className="flex justify-between text-base font-medium text-gray-900">
-                                      <h3>
-                                        <a href={product.title}>
+                                      <h5>
+                                        <a href={product.href}>
                                           {product.title}
                                         </a>
-                                      </h3>
-                                      <p className="ml-4">${product.price}</p>
+                                      </h5>
+                                      <p className="ml-4">{product.price}</p>
                                     </div>
                                     <p className="mt-1 text-sm text-gray-500">
                                       {product.color}
@@ -122,10 +122,14 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
                       </div>
                       <div className="mt-6">
                         <Link
-                          href={`/checkout`}
-                          className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                          onClick={onClose}
+                          legacyBehavior
+                          passHref
+                          href="/checkout"
                         >
-                          Checkout
+                          <a className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700">
+                            Checkout
+                          </a>
                         </Link>
                       </div>
                       <div className="mt-6 flex justify-center text-center text-sm text-gray-500"></div>
