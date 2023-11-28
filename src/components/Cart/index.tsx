@@ -2,11 +2,10 @@
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import Link from "next/link";
 
 const products = [
   {
-    id: 0,
+    id: 1,
     name: "Throwback Hip Bag",
     href: "#",
     color: "Salmon",
@@ -38,9 +37,6 @@ interface CartProps {
 }
 
 const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
-
-  const [quantity, setQuantity] = useState(1);
-
   return (
     <Transition.Root show={isOpen} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={onClose}>
@@ -94,8 +90,8 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
                             role="list"
                             className="-my-6 divide-y divide-gray-200"
                           >
-                            {products.map((product, index) => (
-                              <li key={index} className="flex py-6">
+                            {products.map((product) => (
+                              <li key={product.id} className="flex py-6">
                                 <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                                   <img
                                     src={product.imageSrc}
@@ -119,28 +115,9 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
                                     </p>
                                   </div>
                                   <div className="flex flex-1 items-end justify-between text-sm">
-                                    <div className="flex justify-center mt-3">
-                                      <svg
-                                        onClick={() => {setQuantity( quantity - 1)}}
-                                        className="cursor-pointer fill-current text-gray-600 w-2"
-                                        viewBox="0 0 448 512"
-                                      >
-                                        <path d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
-                                      </svg>
-                                      <input
-                                        className="mx-2 border text-center w-8"
-                                        type="text"
-                                        value={quantity}
-                                      />
-
-                                      <svg
-                                        onClick={() => {setQuantity( quantity + 1)}}
-                                        className="cursor-pointer fill-current text-gray-600 w-2"
-                                        viewBox="0 0 448 512"
-                                      >
-                                        <path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
-                                      </svg>
-                                    </div>
+                                    <p className="text-gray-500">
+                                      Qty: {product.quantity}
+                                    </p>
 
                                     <div className="flex">
                                       <button
@@ -165,13 +142,12 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
                         <p>$262.00</p>
                       </div>
                       <div className="mt-6">
-                        <Link onClick={onClose} legacyBehavior passHref href="/checkout">
-                        <a                          
+                        <a
+                          href="#"
                           className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
                         >
                           Checkout
                         </a>
-                        </Link>
                       </div>
                       <div className="mt-6 flex justify-center text-center text-sm text-gray-500"></div>
                     </div>
