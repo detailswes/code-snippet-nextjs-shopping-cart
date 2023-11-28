@@ -1,6 +1,6 @@
 const AboutUs = () => {
   return (
-    <div className="container bg-white px-14 py-10 mx-auto">
+    <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8 bg-white">
       <h2 className="mb-6">About Us</h2>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
