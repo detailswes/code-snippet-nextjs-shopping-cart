@@ -3,14 +3,18 @@ import { useState } from "react";
 import { StarIcon } from "@heroicons/react/20/solid";
 import Link from "next/link";
 import Cart from "@/components/Cart";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../redux/store";
+import { addToCart } from "@/redux/cartSlice";
+
 interface Product {
   id: string;
   title: string;
   price: number;
   description: string;
   category: string;
-  image: string;
-  rating: { href: string; rate: number; count: number };
+  images: string[];
+  // rating: { href: string; rate: number; count: number };
 }
 
 function classNames(...classes: string[]) {
@@ -20,7 +24,15 @@ export default function ProductDetail(data: { data: Product }) {
   let product = data.data;
 
   const [openCart, setOpenCart] = useState(false);
+  const [cartCount, setCartCount] = useState(0);
+  const dispatch = useDispatch<AppDispatch>();
+  const { cart } = useSelector((state: RootState) => state.cart);
   const toggleSideBar = () => setOpenCart((open) => !open);
+  const handleAddToCart = async (cartItems: any) => {
+    dispatch(addToCart(cartItems));
+    setOpenCart(true);
+    setCartCount(cart.length);
+  };
   return (
     <>
       <div className="bg-white">
@@ -65,8 +77,8 @@ export default function ProductDetail(data: { data: Product }) {
           <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
             <div className="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block">
               <img
-                src={product.image}
-                alt={product.image}
+                src={product.images[0]}
+                alt={product.images[0]}
                 className="h-full w-full object-cover object-center"
               />
             </div>
@@ -88,7 +100,7 @@ export default function ProductDetail(data: { data: Product }) {
               </p>
 
               {/* Reviews */}
-              <div className="mt-6">
+              {/* <div className="mt-6">
                 <h3 className="sr-only">Reviews</h3>
                 <div className="flex items-center">
                   <div className="flex items-center">
@@ -115,12 +127,12 @@ export default function ProductDetail(data: { data: Product }) {
                     {product.rating.count} reviews
                   </a>
                 </div>
-              </div>
+              </div> */}
 
               <form className="mt-10">
                 {/* Colors */}
                 <div
-                  onClick={toggleSideBar}
+                  onClick={() => handleAddToCart(product)}
                   className="cursor-pointer mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                 >
                   Add to cart
