@@ -1,9 +1,7 @@
 import ProductDetail from "@/components/Product/details";
-import { baseUrl } from "@/config";
+import { fetchProductDetail } from "@/service";
 export default async function Page(props: any) {
   const id = props.params.id;
-  const response = await fetch(`${baseUrl}products/${id}`);
-  const data = await response.json();
-  console.log(data);
+  const { data } = await fetchProductDetail(id);
   return <ProductDetail data={data} />;
 }

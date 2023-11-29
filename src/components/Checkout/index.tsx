@@ -25,13 +25,17 @@ const Checkout = () => {
           Check your items. And select a suitable shipping method.
         </p>
         <div className="mt-8 space-y-3 rounded-lg border bg-white px-2 py-4 sm:px-6">
-          {cart.map((product: any) => (
-            <div className="flex flex-col rounded-lg bg-white sm:flex-row">
+          {cart.map((product: any, index: number) => (
+            <div
+              key={index}
+              className="flex flex-col rounded-lg bg-white sm:flex-row"
+            >
               <img
                 className="m-2 h-24 w-28 rounded-md border object-cover object-center"
                 src={product.image}
                 alt={product.image}
               />
+
               <div className="flex w-full flex-col px-4 py-4">
                 <span className="font-semibold">{product.title}</span>
                 <p className="text-lg font-bold">${product.price}</p>

@@ -6,6 +6,7 @@ import Cart from "@/components/Cart";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../redux/store";
 import { addToCart } from "@/redux/cartSlice";
+import Image from "next/image";
 
 interface Product {
   id: string;
@@ -83,10 +84,12 @@ export default function ProductDetail(data: { data: Product }) {
           {/* Image gallery */}
           <div className="mx-auto py-6 max-w-2xl p-4 sm:px-6 lg:grid lg:max-w-7xl bg-white lg:grid-cols-3 lg:gap-x-8 lg:px-8">
             <div className="aspect-h-4 aspect-w-3 overflow-hidden rounded-lg lg:block">
-              <img
+              <Image
                 src={product.image}
                 alt={product.image}
                 className="h-full w-full object-cover object-center"
+                width={500}
+                height={500}
               />
             </div>
             <div className="lg:col-span-2 lg:border-l lg:border-gray-200 lg:pl-8">

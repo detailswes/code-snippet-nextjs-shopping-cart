@@ -1,7 +1,7 @@
 import { baseUrl } from "@/config";
 import axios from "axios";
 
-const useAxios = axios.create({
+const customAxios = axios.create({
   baseURL: baseUrl,
 });
-export default useAxios;
+export default customAxios;

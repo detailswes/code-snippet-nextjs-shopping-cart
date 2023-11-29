@@ -11,6 +11,7 @@ import {
   updateQuantity,
   removeProductFromCart,
 } from "@/redux/cartSlice";
+import Image from "next/image";
 
 interface CartProps {
   isOpen: boolean;
@@ -36,7 +37,6 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
   };
 
   const handleUpdateQuantity = (event: any, product: any) => {
-    console.log(event);
     const updatedProduct = {
       ...product,
       quantity: parseInt(event.target.value, 10),
@@ -99,10 +99,12 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
                               {cart.map((product: any) => (
                                 <li key={product.id} className="flex py-6">
                                   <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                                    <img
+                                    <Image
                                       src={product.image}
                                       alt={product.image}
                                       className="h-full w-full object-cover object-center"
+                                      width={100}
+                                      height={100}
                                     />
                                   </div>
 

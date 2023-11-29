@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState: any = {
   cart: [],
-
   error: null,
   isLoading: false,
 };
@@ -15,13 +14,11 @@ const cartSlice = createSlice({
       state.cart.push(payload);
     },
     updateQuantity: (state, { payload }) => {
-      console.log(payload);
       const isItemAlreadyExist = state.cart?.findIndex(
         (res: any) => res.id === payload.id
       );
 
       if (isItemAlreadyExist >= 0) {
-        // alert("nothing  added");
         state.cart[isItemAlreadyExist].quantity = payload.quantity;
         state.cart[isItemAlreadyExist].updatedPrice = payload.price;
         state.cart[isItemAlreadyExist].updatedPrice =
