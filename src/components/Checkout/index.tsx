@@ -10,7 +10,10 @@ const Checkout = () => {
   const [cartTotal, setCartTotal] = useState(0);
 
   useEffect(() => {
-    const total = cart.reduce((acc: number, curr: any) => acc + curr.price, 0);
+    const total = cart.reduce(
+      (acc: number, curr: any) => acc + curr.updatedPrice,
+      0
+    );
     setCartTotal(total);
   }, [cart]);
 
@@ -26,12 +29,20 @@ const Checkout = () => {
             <div className="flex flex-col rounded-lg bg-white sm:flex-row">
               <img
                 className="m-2 h-24 w-28 rounded-md border object-cover object-center"
-                src={product.images[0]}
-                alt={product.images[0]}
+                src={product.image}
+                alt={product.image}
               />
               <div className="flex w-full flex-col px-4 py-4">
                 <span className="font-semibold">{product.title}</span>
-                <p className="text-lg font-bold">${product.price}.00</p>
+                <p className="text-lg font-bold">${product.price}</p>
+              </div>
+              <div className="flex w-full flex-col px-4 py-4">
+                <span className="font-semibold">Quantity</span>
+                <p className="text-lg font-bold">{product.quantity}</p>
+              </div>
+              <div className="flex w-full flex-col px-4 py-4">
+                <span className="font-semibold">Price</span>
+                <p className="text-lg font-bold">${product.updatedPrice}</p>
               </div>
             </div>
           ))}
@@ -45,19 +56,27 @@ const Checkout = () => {
         <div className="mt-6 border-t border-b py-2">
           <div className="flex items-center justify-between">
             <p className="text-sm font-medium text-gray-900">Subtotal</p>
-            <p className="font-semibold text-gray-900">${cartTotal}.00</p>
+            <p className="font-semibold text-gray-900">${cartTotal}</p>
           </div>
           <div className="flex items-center justify-between">
             <p className="text-sm font-medium text-gray-900">Shipping</p>
             <p className="font-semibold text-gray-900">
-              ${Math.round((cartTotal * 10) / 100)}.00
+              {new Intl.NumberFormat("en-US", {
+                maximumFractionDigits: 2,
+                style: "currency",
+                currency: "USD",
+              }).format((cartTotal * 10) / 100)}
             </p>
           </div>
         </div>
         <div className="mt-6 flex items-center justify-between">
           <p className="text-sm font-medium text-gray-900">Total</p>
           <p className="text-2xl font-semibold text-gray-900">
-            ${Math.round(cartTotal + (cartTotal * 10) / 100)}.00
+            {new Intl.NumberFormat("en-US", {
+              maximumFractionDigits: 2,
+              style: "currency",
+              currency: "USD",
+            }).format(cartTotal + (cartTotal * 10) / 100)}
           </p>
         </div>
 

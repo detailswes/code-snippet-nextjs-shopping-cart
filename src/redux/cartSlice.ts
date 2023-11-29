@@ -14,38 +14,28 @@ const cartSlice = createSlice({
     addToCart: (state, { payload }) => {
       state.cart.push(payload);
     },
-    //for increase quantity
-    increaseQuantity: (state, { payload }) => {
+    updateQuantity: (state, { payload }) => {
+      console.log(payload);
       const isItemAlreadyExist = state.cart?.findIndex(
         (res: any) => res.id === payload.id
       );
 
       if (isItemAlreadyExist >= 0) {
         // alert("nothing  added");
-        state.cart[isItemAlreadyExist].quantity += 1;
-      } else {
-        // alert("added");
-        const itemToIncreaseQuantity = payload;
-        itemToIncreaseQuantity.quantity = 1;
-        state.cart.push(itemToIncreaseQuantity);
+        state.cart[isItemAlreadyExist].quantity = payload.quantity;
+        state.cart[isItemAlreadyExist].updatedPrice = payload.price;
+        state.cart[isItemAlreadyExist].updatedPrice =
+          state.cart[isItemAlreadyExist].price * payload.quantity;
       }
     },
-    //for decrease quantity
-    decreaseQuantity: (state, { payload }) => {
-      console.log(payload, "payload");
-
-      const index = state.cart.findIndex((res: any) => res.id === payload.id);
-      console.log(index, "index");
-
-      if (index >= 0) {
-        if (state.cart[index].quantity > 1) {
-          // alert("decreased");
-          state.cart[index].quantity -= 1;
-        }
-      }
+    removeProductFromCart: (state, { payload }) => {
+      const updatedCart = state.cart.filter(
+        (item: any) => item.id !== payload.id
+      );
+      state.cart = updatedCart;
     },
   },
 });
-export const { addToCart, increaseQuantity, decreaseQuantity } =
+export const { addToCart, updateQuantity, removeProductFromCart } =
   cartSlice.actions;
 export default cartSlice.reducer;

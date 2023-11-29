@@ -13,8 +13,8 @@ interface Product {
   price: number;
   description: string;
   category: string;
-  images: string[];
-  // rating: { href: string; rate: number; count: number };
+  image: string;
+  rating: { href: string; rate: number; count: number };
 }
 
 function classNames(...classes: string[]) {
@@ -29,7 +29,14 @@ export default function ProductDetail(data: { data: Product }) {
   const { cart } = useSelector((state: RootState) => state.cart);
   const toggleSideBar = () => setOpenCart((open) => !open);
   const handleAddToCart = async (cartItems: any) => {
-    dispatch(addToCart(cartItems));
+    dispatch(
+      addToCart({
+        ...cartItems,
+        addedToCart: true,
+        quantity: 1,
+        updatedPrice: cartItems.price,
+      })
+    );
     setOpenCart(true);
     setCartCount(cart.length);
   };
@@ -41,7 +48,7 @@ export default function ProductDetail(data: { data: Product }) {
             <ol
               role="list"
               className="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8 bg-white pt-10"
-            > 
+            >
               <li>
                 <div className="flex items-center">
                   <Link
@@ -77,8 +84,8 @@ export default function ProductDetail(data: { data: Product }) {
           <div className="mx-auto py-6 max-w-2xl p-4 sm:px-6 lg:grid lg:max-w-7xl bg-white lg:grid-cols-3 lg:gap-x-8 lg:px-8">
             <div className="aspect-h-4 aspect-w-3 overflow-hidden rounded-lg lg:block">
               <img
-                src={product.images[0]}
-                alt={product.images[0]}
+                src={product.image}
+                alt={product.image}
                 className="h-full w-full object-cover object-center"
               />
             </div>
@@ -87,11 +94,9 @@ export default function ProductDetail(data: { data: Product }) {
                 {product.title}
               </h1>
               <div className="space-y-6">
-                  <p className="text-base text-gray-900">
-                    {product.description}
-                  </p>
-                </div>
-                <div className="mt-6">
+                <p className="text-base text-gray-900">{product.description}</p>
+              </div>
+              <div className="mt-6">
                 <h2 className="text-sm font-medium text-gray-900">Details</h2>
 
                 <div className="mt-4 space-y-6">
@@ -99,57 +104,53 @@ export default function ProductDetail(data: { data: Product }) {
                 </div>
               </div>
               <div className="mt-4 lg:row-span-3 lg:mt-6">
-              <h2 className="sr-only">Product information</h2>
-              <p className="text-3xl tracking-tight text-gray-900">
-                ${product.price}
-              </p>
+                <h2 className="sr-only">Product information</h2>
+                <p className="text-3xl tracking-tight text-gray-900">
+                  ${product.price}
+                </p>
 
-              {/* Reviews */}
-              {/* <div className="mt-6">
-                <h3 className="sr-only">Reviews</h3>
-                <div className="flex items-center">
+                {/* Reviews */}
+                <div className="mt-6">
+                  <h3 className="sr-only">Reviews</h3>
                   <div className="flex items-center">
-                    {[0, 1, 2, 3, 4].map((rating) => (
-                      <StarIcon
-                        key={rating}
-                        className={classNames(
-                          product.rating.rate > rating
-                            ? "text-gray-900"
-                            : "text-gray-200",
-                          "h-5 w-5 flex-shrink-0"
-                        )}
-                        aria-hidden="true"
-                      />
-                    ))}
+                    <div className="flex items-center">
+                      {[0, 1, 2, 3, 4].map((rating) => (
+                        <StarIcon
+                          key={rating}
+                          className={classNames(
+                            product.rating.rate > rating
+                              ? "text-gray-900"
+                              : "text-gray-200",
+                            "h-5 w-5 flex-shrink-0"
+                          )}
+                          aria-hidden="true"
+                        />
+                      ))}
+                    </div>
+                    <p className="sr-only">
+                      {product.rating.rate} out of 5 stars
+                    </p>
+                    <a
+                      href={product.rating.href}
+                      className="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500"
+                    >
+                      {product.rating.count} reviews
+                    </a>
                   </div>
-                  <p className="sr-only">
-                    {product.rating.rate} out of 5 stars
-                  </p>
-                  <a
-                    href={product.rating.href}
-                    className="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500"
+                </div>
+
+                <form className="mt-10">
+                  {/* Colors */}
+                  <div
+                    onClick={() => handleAddToCart(product)}
+                    className="cursor-pointer mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                   >
-                    {product.rating.count} reviews
-                  </a>
-                </div>
-              </div> */}
-
-              <form className="mt-10">
-                {/* Colors */}
-                <div
-                  onClick={() => handleAddToCart(product)}
-                  className="cursor-pointer mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                >
-                  Add to cart
-                </div>
-              </form>
+                    Add to cart
+                  </div>
+                </form>
+              </div>
             </div>
-            </div>
-            
           </div>
-
-          
-          
         </div>
       </div>
       <Cart isOpen={openCart} onClose={toggleSideBar} />
