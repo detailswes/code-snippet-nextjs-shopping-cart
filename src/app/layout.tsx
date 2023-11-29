@@ -6,7 +6,7 @@ import "./data-tables-css.css";
 import Header from "@/common/Header";
 import { Provider } from "react-redux";
 import { store } from "@/redux/store";
-
+import NextNProgress from "nextjs-progressbar";
 export default function RootLayout({
   children,
 }: {

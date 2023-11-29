@@ -16,6 +16,7 @@
     "axios": "^1.6.2",
     "next": "14.0.3",
     "next-plugin-svgr": "^1.1.10",
+    "nextjs-progressbar": "^0.0.16",
     "react": "^18",
     "react-data-table-component": "^7.5.4",
     "react-dom": "^18",
