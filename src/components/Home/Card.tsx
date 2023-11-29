@@ -17,7 +17,7 @@ const Card = ({ product }: any) => {
 
   //func to handle add cart items
   const handleAddToCart = async (cartItems: any) => {
-    dispatch(addToCart({ ...cartItems, addedToCart: true }));
+    dispatch(addToCart({ ...cartItems, addedToCart: true, quantity: 1 }));
   };
 
   const handleIncreaseQuantity = (product: Object) => {
@@ -37,7 +37,7 @@ const Card = ({ product }: any) => {
         legacyBehavior
         passHref
         href={`/project-details/${product.id}`}
-      >  */}
+      > */}
       <a className="group">
         <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
           <img
@@ -73,7 +73,7 @@ const Card = ({ product }: any) => {
           </button>
         </div>
       </a>
-      {/* </Link> */}
+      {/*  </Link> */}
     </>
   );
 };

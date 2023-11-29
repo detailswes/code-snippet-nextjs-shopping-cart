@@ -41,7 +41,7 @@ export default function ProductDetail(data: { data: Product }) {
             <ol
               role="list"
               className="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8 bg-white pt-10"
-            > 
+            >
               <li>
                 <div className="flex items-center">
                   <Link
@@ -87,11 +87,9 @@ export default function ProductDetail(data: { data: Product }) {
                 {product.title}
               </h1>
               <div className="space-y-6">
-                  <p className="text-base text-gray-900">
-                    {product.description}
-                  </p>
-                </div>
-                <div className="mt-6">
+                <p className="text-base text-gray-900">{product.description}</p>
+              </div>
+              <div className="mt-6">
                 <h2 className="text-sm font-medium text-gray-900">Details</h2>
 
                 <div className="mt-4 space-y-6">
@@ -99,13 +97,13 @@ export default function ProductDetail(data: { data: Product }) {
                 </div>
               </div>
               <div className="mt-4 lg:row-span-3 lg:mt-6">
-              <h2 className="sr-only">Product information</h2>
-              <p className="text-3xl tracking-tight text-gray-900">
-                ${product.price}
-              </p>
+                <h2 className="sr-only">Product information</h2>
+                <p className="text-3xl tracking-tight text-gray-900">
+                  ${product.price}
+                </p>
 
-              {/* Reviews */}
-              {/* <div className="mt-6">
+                {/* Reviews */}
+                {/* <div className="mt-6">
                 <h3 className="sr-only">Reviews</h3>
                 <div className="flex items-center">
                   <div className="flex items-center">
@@ -134,22 +132,18 @@ export default function ProductDetail(data: { data: Product }) {
                 </div>
               </div> */}
 
-              <form className="mt-10">
-                {/* Colors */}
-                <div
-                  onClick={() => handleAddToCart(product)}
-                  className="cursor-pointer mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                >
-                  Add to cart
-                </div>
-              </form>
+                <form className="mt-10">
+                  {/* Colors */}
+                  <div
+                    onClick={() => handleAddToCart(product)}
+                    className="cursor-pointer mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                  >
+                    Add to cart
+                  </div>
+                </form>
+              </div>
             </div>
-            </div>
-            
           </div>
-
-          
-          
         </div>
       </div>
       <Cart isOpen={openCart} onClose={toggleSideBar} />
