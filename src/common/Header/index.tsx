@@ -1,21 +1,9 @@
-import { Fragment, useState } from "react";
-import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
+import { useState } from "react";
+import { Dialog, Popover } from "@headlessui/react";
 import { useSelector } from "react-redux";
 
-import {
-  ArrowPathIcon,
-  Bars3Icon,
-  ChartPieIcon,
-  CursorArrowRaysIcon,
-  FingerPrintIcon,
-  SquaresPlusIcon,
-  XMarkIcon,
-} from "@heroicons/react/24/outline";
-import {
-  ChevronDownIcon,
-  PhoneIcon,
-  PlayCircleIcon,
-} from "@heroicons/react/20/solid";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+
 import Cart from "@/components/Cart";
 import Link from "next/link";
 import { RootState } from "@/redux/store";
@@ -45,13 +33,6 @@ export default function Header() {
                   src="https://img.freepik.com/free-vector/flat-design-bookstore-logo-template_23-2149325325.jpg?w=826&t=st=1701090789~exp=1701091389~hmac=bb5cbecb581461c77bb6f6c98c2844f4f9647aaf26c0f55c198adf934371a201"
                   alt="Logo"
                 />
-                {/* <Image
-                  className="h-20 w-18"
-                  src="https://img.freepik.com/free-vector/flat-design-bookstore-logo-template_23-2149325325.jpg?w=826&t=st=1701090789~exp=1701091389~hmac=bb5cbecb581461c77bb6f6c98c2844f4f9647aaf26c0f55c198adf934371a201"
-                  alt="Logo"
-                  width={100}
-                  height={100}
-                /> */}
               </a>
             </Link>
           </div>
@@ -116,10 +97,10 @@ export default function Header() {
             <div className="flex items-center justify-between">
               <a href="#" className="-m-1.5 p-1.5">
                 <span className="sr-only">Your Company</span>
-                <Image
-                  className="h-8 w-auto"
+                <img
+                  className="h-20 w-18"
                   src="https://img.freepik.com/free-vector/flat-design-bookstore-logo-template_23-2149325325.jpg?w=826&t=st=1701090789~exp=1701091389~hmac=bb5cbecb581461c77bb6f6c98c2844f4f9647aaf26c0f55c198adf934371a201"
-                  alt=""
+                  alt="Logo"
                   width={100}
                   height={100}
                 />

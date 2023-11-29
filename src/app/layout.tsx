@@ -1,8 +1,6 @@
 "use client";
 import "./globals.css";
 import "./data-tables-css.css";
-// import { useState, useEffect } from "react";
-// import Loader from "../common/Loader";
 import Header from "@/common/Header";
 import { Provider } from "react-redux";
 import { store } from "@/redux/store";
@@ -12,17 +10,12 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // const [loading, setLoading] = useState<boolean>(true);
-
-  // useEffect(() => {
-  //   setTimeout(() => setLoading(false), 1000);
-  // }, []);
-
   return (
     <Provider store={store}>
       <html lang="en">
         <body suppressHydrationWarning={true}>
           <div className="">
+            <NextNProgress></NextNProgress>
             <div className="w-full">
               {/* <!-- ===== Content Area Start ===== --> */}
               <div className="p-0">

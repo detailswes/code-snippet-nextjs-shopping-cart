@@ -1,9 +1,9 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Card from "./Card";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchAllProductList } from "@/service";
-
+import Loader from "@/common/Loader";
 export default function Home({
   data,
   limit,
@@ -36,7 +36,7 @@ export default function Home({
           dataLength={products.length}
           next={() => fetchMoreData(dataLimit + 4)}
           hasMore={hasMore}
-          loader={<h4>Loading...</h4>}
+          loader={<Loader />}
           endMessage={
             <p className="text-center text-[gray] mt-6">
               Yay! You have seen it all

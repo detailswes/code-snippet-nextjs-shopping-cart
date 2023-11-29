@@ -1,15 +1,10 @@
 "use client";
 import Link from "next/link";
 import { AppDispatch, RootState } from "../../redux/store";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { clearCart } from "@/redux/cartSlice";
-import {
-  getTotal,
-  formatPrice,
-  shippingAmount,
-  finalPrice,
-} from "@/helpers/utils";
+import { getTotal, shippingAmount, finalPrice } from "@/helpers/utils";
 const Checkout = () => {
   const { cart } = useSelector((state: RootState) => state.cart);
 
