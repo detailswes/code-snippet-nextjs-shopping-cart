@@ -24,11 +24,13 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
   const [cartTotal, setCartTotal] = useState(0);
 
   useEffect(() => {
-    const total = cart.reduce(
-      (acc: number, curr: any) => acc + curr.updatedPrice,
-      0
-    );
-    setCartTotal(total);
+    if (cart.length > 0) {
+      const total = cart.reduce(
+        (acc: number, curr: any) => acc + curr.updatedPrice,
+        0
+      );
+      setCartTotal(total);
+    }
   }, [cart]);
 
   const handleRemoveProductFromCart = (product: Object) => {
@@ -174,7 +176,7 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
                       )}
                     </div>
 
-                    {cart.length && (
+                    {cart.length > 0 && (
                       <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                         <div className="flex justify-between text-base font-medium text-gray-900">
                           <p>Subtotal</p>
@@ -189,7 +191,10 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
                         </div>
                         <div className="mt-6">
                           <Link legacyBehavior passHref href="/checkout">
-                            <a className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700">
+                            <a
+                              onClick={onClose}
+                              className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                            >
                               Checkout
                             </a>
                           </Link>

@@ -20,47 +20,6 @@ import Cart from "@/components/Cart";
 import Link from "next/link";
 import { RootState } from "@/redux/store";
 
-const products = [
-  {
-    name: "Analytics",
-    description: "Get a better understanding of your traffic",
-    href: "#",
-    icon: ChartPieIcon,
-  },
-  {
-    name: "Engagement",
-    description: "Speak directly to your customers",
-    href: "#",
-    icon: CursorArrowRaysIcon,
-  },
-  {
-    name: "Security",
-    description: "Your customers’ data will be safe and secure",
-    href: "#",
-    icon: FingerPrintIcon,
-  },
-  {
-    name: "Integrations",
-    description: "Connect with third-party tools",
-    href: "#",
-    icon: SquaresPlusIcon,
-  },
-  {
-    name: "Automations",
-    description: "Build strategic funnels that will convert",
-    href: "#",
-    icon: ArrowPathIcon,
-  },
-];
-const callsToAction = [
-  { name: "Watch demo", href: "#", icon: PlayCircleIcon },
-  { name: "Contact sales", href: "#", icon: PhoneIcon },
-];
-
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(" ");
-}
-
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openCart, setOpenCart] = useState(false);
@@ -113,7 +72,9 @@ export default function Header() {
           </Popover.Group>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end relative">
             <div className="absolute bg-indigo-600 hover:bg-indigo-700 w-5 h-5 flex items-center justify-center rounded-full right-[-10px] top-[-10px]">
-              <p className="text-xs text-white">{cart.length}</p>
+              <p className="text-xs text-white">
+                {cart.length > 0 ? cart.length : 0}
+              </p>
             </div>
             <div
               onClick={toggleSideBar}
@@ -179,7 +140,9 @@ export default function Header() {
                 </div>
                 <div className="py-6  lg:flex lg:flex-1 lg:justify-end relative">
                   <div className="absolute bg-indigo-600 hover:bg-indigo-700 w-5 h-5 flex items-center justify-center rounded-full left-[10px] top-3">
-                    <p className="text-xs text-white">{cart.length}</p>
+                    <p className="text-xs text-white">
+                      {cart.length > 0 ? cart.length : 0}
+                    </p>
                   </div>
                   <div
                     onClick={toggleSideBar}

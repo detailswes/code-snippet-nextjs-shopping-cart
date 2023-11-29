@@ -40,6 +40,9 @@ const cartSlice = createSlice({
       );
       state.cart = updatedCart;
     },
+    clearCart: (state) => {
+      state.cart = [];
+    },
   },
 });
 interface Payload {
@@ -57,6 +60,6 @@ function modifiedQuantity(state: any, item: number, payload: Payload) {
   state.cart[item].updatedPrice =
     state.cart[item].price * state.cart[item].quantity;
 }
-export const { addToCart, updateQuantity, removeProductFromCart } =
+export const { addToCart, updateQuantity, removeProductFromCart, clearCart } =
   cartSlice.actions;
 export default cartSlice.reducer;
