@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../redux/store";
 import { addToCart } from "@/redux/cartSlice";
 import Image from "next/image";
-
+import { formatPrice } from "@/helpers/utils";
 interface Product {
   id: string;
   title: string;
@@ -109,7 +109,7 @@ export default function ProductDetail(data: { data: Product }) {
               <div className="mt-4 lg:row-span-3 lg:mt-6">
                 <h2 className="sr-only">Product information</h2>
                 <p className="text-3xl tracking-tight text-gray-900">
-                  ${product.price}
+                  {formatPrice(product.price)}
                 </p>
 
                 {/* Reviews */}
