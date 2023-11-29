@@ -1,19 +1,7 @@
 "use client";
 import Link from "next/link";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../redux/store";
-import { addToCart } from "@/redux/cartSlice";
 
 const Card = ({ product }: any) => {
-  const dispatch = useDispatch<AppDispatch>();
-  const { cart } = useSelector((state: RootState) => state.cart);
-  console.log(cart, "cart++++++++++");
-
-  //func to handle add cart items
-  const handleAddToCart = async (cartItems: any) => {
-    dispatch(addToCart({ ...cartItems, addedToCart: true }));
-  };
-
   return (
     <>
       <Link

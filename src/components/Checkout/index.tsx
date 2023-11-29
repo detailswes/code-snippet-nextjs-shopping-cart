@@ -26,7 +26,10 @@ const Checkout = () => {
         </p>
         <div className="mt-8 space-y-3 rounded-lg border bg-white px-2 py-4 sm:px-6">
           {cart.map((product: any) => (
-            <div className="flex flex-col rounded-lg bg-white sm:flex-row">
+            <div
+              key={product.id}
+              className="flex flex-col rounded-lg bg-white sm:flex-row"
+            >
               <img
                 className="m-2 h-24 w-28 rounded-md border object-cover object-center"
                 src={product.image}

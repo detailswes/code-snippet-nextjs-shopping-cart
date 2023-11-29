@@ -12,7 +12,17 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, { payload }) => {
-      state.cart.push(payload);
+      console.log(typeof state);
+      const isItemAlreadyExist = state.cart?.findIndex(
+        (res: any) => res.id === payload.id
+      );
+
+      if (isItemAlreadyExist >= 0) {
+        // alert("nothing  added");
+        modifiedQuantity(state, isItemAlreadyExist, payload);
+      } else {
+        state.cart.push(payload);
+      }
     },
     updateQuantity: (state, { payload }) => {
       console.log(payload);
@@ -21,11 +31,7 @@ const cartSlice = createSlice({
       );
 
       if (isItemAlreadyExist >= 0) {
-        // alert("nothing  added");
-        state.cart[isItemAlreadyExist].quantity = payload.quantity;
-        state.cart[isItemAlreadyExist].updatedPrice = payload.price;
-        state.cart[isItemAlreadyExist].updatedPrice =
-          state.cart[isItemAlreadyExist].price * payload.quantity;
+        modifiedQuantity(state, isItemAlreadyExist, payload);
       }
     },
     removeProductFromCart: (state, { payload }) => {
@@ -36,6 +42,21 @@ const cartSlice = createSlice({
     },
   },
 });
+interface Payload {
+  id: string;
+  title: string;
+  price: number;
+  description: string;
+  category: string;
+  image: string;
+  rating: { href: string; rate: number; count: number };
+}
+function modifiedQuantity(state: any, item: number, payload: Payload) {
+  state.cart[item].quantity += 1;
+  state.cart[item].updatedPrice = payload.price;
+  state.cart[item].updatedPrice =
+    state.cart[item].price * state.cart[item].quantity;
+}
 export const { addToCart, updateQuantity, removeProductFromCart } =
   cartSlice.actions;
 export default cartSlice.reducer;
