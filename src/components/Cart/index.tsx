@@ -5,12 +5,8 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../redux/store";
-
-import {
-  addToCart,
-  updateQuantity,
-  removeProductFromCart,
-} from "@/redux/cartSlice";
+import { getTotal, formatPrice } from "@/helpers/utils";
+import { updateQuantity, removeProductFromCart } from "@/redux/cartSlice";
 
 interface CartProps {
   isOpen: boolean;
@@ -20,18 +16,6 @@ interface CartProps {
 const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
   const dispatch = useDispatch<AppDispatch>();
   const { cart } = useSelector((state: RootState) => state.cart);
-
-  const [cartTotal, setCartTotal] = useState(0);
-
-  useEffect(() => {
-    if (cart.length > 0) {
-      const total = cart.reduce(
-        (acc: number, curr: any) => acc + curr.updatedPrice,
-        0
-      );
-      setCartTotal(total);
-    }
-  }, [cart]);
 
   const handleRemoveProductFromCart = (product: Object) => {
     dispatch(removeProductFromCart(product));
@@ -117,11 +101,7 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
                                           </a>
                                         </h5>
                                         <p className="ml-4">
-                                          {new Intl.NumberFormat("en-US", {
-                                            maximumFractionDigits: 2,
-                                            style: "currency",
-                                            currency: "USD",
-                                          }).format(product.updatedPrice)}
+                                          {formatPrice(product.updatedPrice)}
                                         </p>
                                       </div>
                                       <p className="mt-1 text-sm text-gray-500">
@@ -129,11 +109,6 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
                                       </p>
                                     </div>
                                     <div className="flex flex-1 items-end justify-between text-sm">
-                                      {/* <p className="text-gray-500">
-                                      Qty:{" "}
-                                      {product.quantity ? product.quantity : 0}
-                                    </p> */}
-
                                       <input
                                         type="number"
                                         className="shadow
@@ -180,14 +155,7 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
                       <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                         <div className="flex justify-between text-base font-medium text-gray-900">
                           <p>Subtotal</p>
-                          <p>
-                            {" "}
-                            {new Intl.NumberFormat("en-US", {
-                              maximumFractionDigits: 2,
-                              style: "currency",
-                              currency: "USD",
-                            }).format(cartTotal)}
-                          </p>
+                          <p> {getTotal(cart)}</p>
                         </div>
                         <div className="mt-6">
                           <Link legacyBehavior passHref href="/checkout">

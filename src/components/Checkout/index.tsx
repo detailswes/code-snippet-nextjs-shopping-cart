@@ -4,20 +4,17 @@ import { AppDispatch, RootState } from "../../redux/store";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { clearCart } from "@/redux/cartSlice";
+import {
+  getTotal,
+  formatPrice,
+  shippingAmount,
+  finalPrice,
+} from "@/helpers/utils";
 const Checkout = () => {
   const { cart } = useSelector((state: RootState) => state.cart);
 
   const [cartTotal, setCartTotal] = useState(0);
   const dispatch = useDispatch<AppDispatch>();
-  useEffect(() => {
-    if (cart.length > 0) {
-      const total = cart.reduce(
-        (acc: number, curr: any) => acc + curr.updatedPrice,
-        0
-      );
-      setCartTotal(total);
-    }
-  }, [cart]);
 
   return (
     <div className="bg-white max-w-4xl mx-auto p-12">
@@ -64,27 +61,19 @@ const Checkout = () => {
             <div className="mt-6 border-t border-b py-2">
               <div className="flex items-center justify-between">
                 <p className="text-sm font-medium text-gray-900">Subtotal</p>
-                <p className="font-semibold text-gray-900">${cartTotal}</p>
+                <p className="font-semibold text-gray-900">{getTotal(cart)}</p>
               </div>
               <div className="flex items-center justify-between">
                 <p className="text-sm font-medium text-gray-900">Shipping</p>
                 <p className="font-semibold text-gray-900">
-                  {new Intl.NumberFormat("en-US", {
-                    maximumFractionDigits: 2,
-                    style: "currency",
-                    currency: "USD",
-                  }).format((cartTotal * 10) / 100)}
+                  {shippingAmount(cart)}
                 </p>
               </div>
             </div>
             <div className="mt-6 flex items-center justify-between">
               <p className="text-sm font-medium text-gray-900">Total</p>
               <p className="text-2xl font-semibold text-gray-900">
-                {new Intl.NumberFormat("en-US", {
-                  maximumFractionDigits: 2,
-                  style: "currency",
-                  currency: "USD",
-                }).format(cartTotal + (cartTotal * 10) / 100)}
+                {finalPrice(cart)}
               </p>
             </div>
 

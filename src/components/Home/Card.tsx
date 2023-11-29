@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { formatPrice } from "@/helpers/utils";
 
 const Card = ({ product }: any) => {
   return (
@@ -20,11 +21,7 @@ const Card = ({ product }: any) => {
           </div>
           <h3 className="mt-4 text-sm text-gray-700">{product.title}</h3>
           <p className="mt-1 text-lg font-medium text-gray-900">
-            {new Intl.NumberFormat("en-US", {
-              maximumFractionDigits: 2,
-              style: "currency",
-              currency: "USD",
-            }).format(product.price)}
+            {formatPrice(product.price)}
           </p>
         </a>
       </Link>
