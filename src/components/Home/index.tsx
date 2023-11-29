@@ -2,7 +2,8 @@
 import { useState, useEffect } from "react";
 import Card from "./Card";
 import InfiniteScroll from "react-infinite-scroll-component";
-import customAxios from "@/helpers/customAxios";
+import { fetchAllProductList } from "@/service";
+
 export default function Home({
   data,
   limit,
@@ -13,11 +14,13 @@ export default function Home({
   const [products, setProducts] = useState(data);
   const [hasMore, setHasMore] = useState(true);
   const [dataLimit, setDataLimit] = useState(limit);
+
   const fetchMoreData = async (limit: number) => {
     try {
-      const { data } = await customAxios(`products?limit=${limit}`);
+      const { data } = await fetchAllProductList(limit);
       setProducts(data);
       setDataLimit((prev) => prev + 4);
+
       if (data.length < limit) {
         setHasMore(false);
       }

@@ -1,8 +1,14 @@
 "use client";
+import Image from "next/image";
 import Link from "next/link";
 import { formatPrice } from "@/helpers/utils";
-
-const Card = ({ product }: any) => {
+interface ProductType {
+  id: number;
+  title: string;
+  price: number;
+  image: string;
+}
+const Card = ({ product }: { product: ProductType }) => {
   return (
     <>
       <Link
@@ -13,9 +19,11 @@ const Card = ({ product }: any) => {
       >
         <a className="group">
           <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
-            <img
-              src={product.image}
-              alt={product.title}
+            <Image
+              src={product?.image}
+              width={500}
+              height={500}
+              alt="Picture of the author"
               className="h-full w-full object-cover object-center group-hover:opacity-75"
             />
           </div>

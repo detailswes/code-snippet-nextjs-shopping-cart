@@ -5,6 +5,8 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../redux/store";
+
+import Image from "next/image";
 import { getTotal, formatPrice } from "@/helpers/utils";
 import { updateQuantity, removeProductFromCart } from "@/redux/cartSlice";
 
@@ -22,7 +24,6 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
   };
 
   const handleUpdateQuantity = (event: any, product: any) => {
-    console.log(event);
     const updatedProduct = {
       ...product,
       quantity: parseInt(event.target.value, 10),
@@ -85,10 +86,12 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
                               {cart.map((product: any) => (
                                 <li key={product.id} className="flex py-6">
                                   <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                                    <img
+                                    <Image
                                       src={product.image}
                                       alt={product.image}
                                       className="h-full w-full object-cover object-center"
+                                      width={100}
+                                      height={100}
                                     />
                                   </div>
 
