@@ -28,6 +28,12 @@ export default function Home({
       console.error("Error fetching more data:", error);
     }
   };
+  useEffect(() => {
+    window.scroll({
+      top: 0,
+      left: 0,
+    });
+  }, []);
   return (
     <div>
       <div className="bg-white mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
@@ -36,7 +42,7 @@ export default function Home({
           dataLength={products.length}
           next={() => fetchMoreData(dataLimit + 4)}
           hasMore={hasMore}
-          loader={<h4>Loading...</h4>}
+          loader={<h4 className="text-center">Loading...</h4>}
           endMessage={
             <p className="text-center text-[gray] mt-6">
               Yay! You have seen it all
