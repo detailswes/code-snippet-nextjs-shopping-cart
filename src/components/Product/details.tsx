@@ -58,16 +58,12 @@ export default function ProductDetail(data: { data: Product }) {
                   >
                     Home
                   </Link>
-                  <svg
+                  <Image
+                    src="/icons/breadcrumbslash.svg"
+                    alt="My SVG"
                     width={16}
                     height={20}
-                    viewBox="0 0 16 20"
-                    fill="currentColor"
-                    aria-hidden="true"
-                    className="h-5 w-4 text-gray-300"
-                  >
-                    <path d="M5.697 4.34L8.98 16.532h1.327L7.025 4.341H5.697z" />
-                  </svg>
+                  />
                 </div>
               </li>
               <li className="text-sm">
