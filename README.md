@@ -1,8 +1,51 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## E-commerce Platform using Next.js, React, and Tailwind CSS
 
-## Getting Started
+This is a E-commerce Platform that leverages Next.js as the framework, Tailwind CSS for styling, and React for building user interfaces. The project utilizes Next.js as the build tool. For state management, React's built-in features are employed, and for routing, React Router DOM is utilized.
 
-First, run the development server:
+### Pages Included
+
+```bash
+Home
+About Us
+Product Details
+Cart
+Checkout
+```
+
+### API Used
+
+Product Lising : https://fakestoreapi.com/products
+
+Product Detail : https://fakestoreapi.com/products/1
+
+### Prerequisites
+
+Make sure you have the following installed on your machine:
+
+- Node.js (https://nodejs.org/)
+- npm (comes with Node.js)
+
+### Getting Started Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/digvijaysingh100/code-snippet-nextjs-shopping-cart.git
+```
+
+2. Navigate to the project directory:
+
+```bash
+cd code-snippet-nextjs-shopping-cart
+```
+
+3. Install the dependencies:
+
+```bash
+npm install
+```
+
+4. Start the development server:
 
 ```bash
 npm run dev
@@ -14,23 +57,33 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The development server will start at ` http://localhost:3000` by default. You can now access the application in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Stopping the Project
+To stop the development server, you can press CTRL + C in the terminal window where the server is running.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Production Build
 
-## Learn More
+To create a production build of the project, run the following command:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run build
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This will generate a production-ready build in the dist directory.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Technologies Used
 
-## Deploy on Vercel
+```bash
+Next.js
+React
+Tailwind CSS
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Contributing
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+If you'd like to contribute, please fork the repository and create a pull request.
+
+## Conclusion
+
+This is a straightforward project that demonstrates the integration of Next.js, Tailwind CSS, and React. Utilizing Next.js as the framework, Tailwind CSS for styling, and React for building interfaces, this project showcases the seamless collaboration of these technologies. The inclusion of Tailwind CSS ensures a streamlined and responsive design approach. Together, these tools contribute to a swift, efficient, and aesthetically pleasing development environment

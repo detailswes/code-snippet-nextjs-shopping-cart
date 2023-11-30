@@ -14,7 +14,6 @@ const OrderConfirmed = () => {
               height={50}
               className="mx-auto"
             />
-            {/* </svg> */}
           </p>
           <h4 className="mb-4">Order Confirmation</h4>
           <p className="text-base text-gray-900">Hey Smiles Davis,</p>
