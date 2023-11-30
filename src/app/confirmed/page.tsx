@@ -24,11 +24,11 @@ const OrderConfirmed = () => {
           <h4 className="mb-4">Order Confirmation</h4>
           <p className="text-base text-gray-900">Hey Smiles Davis,</p>
           <p className="text-base text-gray-900">
-            We've got your order! Your world is about to look a whole lot
+            We have got your order! Your world is about to look a whole lot
             better.
           </p>
           <p className="text-base text-gray-900">
-            We'll drop you another email when your order ships.
+            We will drop you another email when your order ships.
           </p>
           <p className="mt-8">
             or {""}
