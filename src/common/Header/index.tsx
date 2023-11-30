@@ -7,7 +7,6 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Cart from "@/components/Cart";
 import Link from "next/link";
 import { RootState } from "@/redux/store";
-import Image from "next/image";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
