@@ -6,11 +6,11 @@ import Cart from "@/components/Cart";
 import Link from "next/link";
 import { RootState } from "@/redux/store";
 import Image from "next/image";
-
+import { usePathname } from "next/navigation";
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openCart, setOpenCart] = useState(false);
-
+  const pathName = usePathname();
   const toggleSideBar = () => setOpenCart((open) => !open);
 
   const { cart } = useSelector((state: RootState) => state.cart);
@@ -19,7 +19,7 @@ export default function Header() {
     <>
       <header className="bg-white">
         <nav
-          className="mx-auto flex max-w-7xl items-center justify-between py-6 lg:px-0"
+          className="mx-auto flex max-w-7xl items-center justify-between py-6 px-6 xl:px-0"
           aria-label="Global"
         >
           <div className="flex lg:flex-1">
@@ -27,7 +27,7 @@ export default function Header() {
               <a className="-m-1.5 p-1.5">
                 <span className="sr-only">Your Company</span>
                 <Image
-                  className="h-20 w-18"
+                  className="w-16"
                   src="/icons/logo.jpeg"
                   alt="Logo"
                   width={100}
@@ -48,15 +48,27 @@ export default function Header() {
           </div>
           <Popover.Group className="hidden lg:flex lg:gap-x-12">
             <Link legacyBehavior passHref href="/">
-              <a className="text-sm font-semibold leading-6 text-gray-900">
+              <span
+                className={`text-sm font-semibold leading-6 cursor-pointer ${
+                  pathName === "/"
+                    ? "text-indigo-600 border-b-2"
+                    : "text-gray-900"
+                }`}
+              >
                 Home
-              </a>
+              </span>
             </Link>
 
             <Link legacyBehavior passHref href="/about-us">
-              <a className="text-sm font-semibold leading-6 text-gray-900">
+              <span
+                className={`text-sm font-semibold leading-6 cursor-pointer  ${
+                  pathName === "/about-us"
+                    ? "text-indigo-600 border-b-2"
+                    : "text-gray-900"
+                }`}
+              >
                 About
-              </a>
+              </span>
             </Link>
           </Popover.Group>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end relative">
@@ -90,7 +102,7 @@ export default function Header() {
               <a href="#" className="-m-1.5 p-1.5">
                 <span className="sr-only">Your Company</span>
                 <Image
-                  className="h-20 w-18"
+                  className="w-18"
                   src="/icons/logo.jpeg"
                   alt="Logo"
                   width={100}
@@ -110,15 +122,27 @@ export default function Header() {
               <div className="-my-6 divide-y divide-gray-500/10">
                 <div className="space-y-2 py-6">
                   <Link legacyBehavior passHref href="/">
-                    <a className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+                    <span
+                      className={`-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7  hover:bg-gray-50 cursor pointer${
+                        pathName === "/"
+                          ? "text-indigo-600 border-b-2"
+                          : "text-gray-900"
+                      }`}
+                    >
                       Home
-                    </a>
+                    </span>
                   </Link>
 
                   <Link legacyBehavior passHref href="/about-us">
-                    <a className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+                    <span
+                      className={`-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 hover:bg-gray-50 cursor pointer ${
+                        pathName === "/about-us"
+                          ? "text-indigo-600 border-b-2"
+                          : "text-gray-900"
+                      }`}
+                    >
                       About
-                    </a>
+                    </span>
                   </Link>
                 </div>
                 <div className="py-6  lg:flex lg:flex-1 lg:justify-end relative">

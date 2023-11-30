@@ -31,8 +31,8 @@ export default function Home({
   };
   useEffect(() => {
     window.scroll({
-      top: 400,
-      left: 400,
+      top: 0,
+      left: 0,
     });
   }, []);
   return (
