@@ -123,7 +123,8 @@ export default function Header() {
                 <div className="space-y-2 py-6">
                   <Link legacyBehavior passHref href="/">
                     <span
-                      className={`-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7  hover:bg-gray-50 cursor pointer${
+                      onClick={() => setMobileMenuOpen(false)}
+                      className={`-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 cursor-pointer ${
                         pathName === "/"
                           ? "text-indigo-600 border-b-2"
                           : "text-gray-900"
@@ -135,7 +136,8 @@ export default function Header() {
 
                   <Link legacyBehavior passHref href="/about-us">
                     <span
-                      className={`-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 hover:bg-gray-50 cursor pointer ${
+                      onClick={() => setMobileMenuOpen(false)}
+                      className={`-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 cursor-pointer ${
                         pathName === "/about-us"
                           ? "text-indigo-600 border-b-2"
                           : "text-gray-900"
