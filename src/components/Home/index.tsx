@@ -1,9 +1,8 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import Card from "./Card";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchAllProductList } from "@/service";
-
 export default function Home({
   data,
   limit,
