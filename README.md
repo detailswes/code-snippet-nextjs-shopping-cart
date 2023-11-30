@@ -15,6 +15,7 @@ Checkout
 ### API Used
 
 Product Lising : https://fakestoreapi.com/products
+
 Product Detail : https://fakestoreapi.com/products/1
 
 ### Prerequisites
