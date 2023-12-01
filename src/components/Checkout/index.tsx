@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { clearCart } from "@/redux/cartSlice";
 import { getTotal, shippingAmount, finalPrice } from "@/helpers/utils";
+import Image from "next/image";
 const Checkout = () => {
   const { cart } = useSelector((state: RootState) => state.cart);
 
@@ -27,11 +28,14 @@ const Checkout = () => {
                   key={product.id}
                   className="flex flex-col rounded-lg bg-white sm:flex-row"
                 >
-                  <img
+                  <Image
                     className="m-2 h-24 w-28 rounded-md border object-cover object-center"
                     src={product.image}
                     alt={product.image}
+                    width={100}
+                    height={100}
                   />
+
                   <div className="flex w-full flex-col px-4 py-4">
                     <span className="font-semibold">{product.title}</span>
                     <p className="text-lg font-bold">${product.price}</p>
